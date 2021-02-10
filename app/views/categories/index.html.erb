@@ -1,0 +1,20 @@
+<div class="title-area">
+    <h1>Categories</h1>
+</div>
+
+<div class="container">
+    <% @categories.each do |category| %>
+        <div class="category">
+            <div class="category-text">
+                <h3><%= link_to category.name, category %></h3>
+                <p><%= truncate( category.description, length: 60, omission: '...' ) %></p>
+                <p class="small"><%= time_ago_in_words(category.created_at) %> ago</p>
+            </div>
+            <a href="/categories/<%= category.id %>"><i class="lni lni-eye"></i>&emsp;View</a>
+            <a href="/categories/<%= category.id %>/edit"><i class="lni lni-pencil-alt"></i>&emsp;Edit</a>
+            <%= link_to '<i class="lni lni-trash"></i>&emsp;Delete'.html_safe, category,
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete this category? This action cannot be reversed." } %>
+        </div>
+    <% end %>
+</div>

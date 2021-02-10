@@ -1,0 +1,17 @@
+<%= form_with model: @category, local: true do |f| %>
+
+    <p>
+        <label>Category</label><br>
+        <%= f.text_field :name, :placeholder => "Self-Care" %>
+    </p>
+
+    <p>
+        <label>Description</label><br>
+        <%= f.text_area :description, :cols => 50, :rows => 8, :placeholder => "Because you cannot pour from an empty cup" %>
+    </p>
+
+    <p>
+        <%= f.submit class: "button button-solid" %>
+    </p>
+
+<% end %>
