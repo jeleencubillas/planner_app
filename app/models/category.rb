@@ -7,4 +7,6 @@ class Category < ApplicationRecord
             minimum: 3,
             maximum: 280
             }
+            
+    has_many :tasks
 end
