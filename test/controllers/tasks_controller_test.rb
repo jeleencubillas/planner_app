@@ -2,6 +2,17 @@ require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
 
+  # setup test task
+  setup do
+    @task = tasks(:one)
+  end
+
+  # called after every single test
+  teardown do
+    # when controller is using cache it may be a good idea to reset it afterwards
+    Rails.cache.clear
+  end
+
   test "1. should get index" do
     get tasks_path
     assert_response :success
@@ -10,17 +21,6 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   test "2. should get new" do
     get new_task_path
     assert_response :success
-  end
-
-  # setup test task
-  def setup
-    @task = tasks(:one)
-  end
-
-  # called after every single test
-  teardown do
-    # when controller is using cache it may be a good idea to reset it afterwards
-    Rails.cache.clear
   end
 
   test "3. should show task" do

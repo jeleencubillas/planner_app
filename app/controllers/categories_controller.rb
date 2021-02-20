@@ -1,7 +1,9 @@
 class CategoriesController < ApplicationController
+
+    before_action :authenticate_user!
     
     def index
-        @categories = Category.all
+        @categories = current_user.categories.all
     end
     
     def show
@@ -9,11 +11,11 @@ class CategoriesController < ApplicationController
     end
     
     def new
-        @category = Category.new
+        @category = current_user.categories.build
     end
     
     def create
-        @category = Category.new(category_params)
+        @category = current_user.categories.build(category_params)
 
         if @category.save
             redirect_to categories_path
@@ -30,7 +32,7 @@ class CategoriesController < ApplicationController
         @category = Category.find(params[:id])
 
         if @category.update(category_params)
-          redirect_to @category
+          redirect_to category_path(@category)
         else
           render :edit
         end

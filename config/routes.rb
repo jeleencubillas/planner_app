@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :categories
-  resources :tasks
+  root to: "tasks#index"
+
+  devise_for :users
+  
+  resources :categories, :tasks
 
 end

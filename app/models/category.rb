@@ -1,4 +1,7 @@
 class Category < ApplicationRecord
+    belongs_to :user
+    has_many :tasks
+    
     validates :name, 
         presence:true
     validates :description, 
@@ -8,5 +11,4 @@ class Category < ApplicationRecord
             maximum: 280
             }
             
-    has_many :tasks
 end

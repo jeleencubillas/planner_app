@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-    # before_action :get_category
+    before_action :get_category, only: [:show, :edit, :update, :destroy]
 
     def index
         @tasks = Task.all
@@ -17,7 +17,7 @@ class TasksController < ApplicationController
         @task = Task.new(task_params)
 
         if @task.save
-            redirect_to tasks_path
+            redirect_to @task
         else
             render :new
         end
@@ -50,6 +50,6 @@ class TasksController < ApplicationController
     end
     
     def task_params
-        params.require(:task).permit(:name, :description, :category_id)
+        params.require(:task).permit(:name, :description, :due_date, :category_id)
     end
 end

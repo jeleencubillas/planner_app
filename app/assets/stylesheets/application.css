@@ -14,6 +14,8 @@
  *= require_self
  */
 
+@import 'flatpickr/dist/flatpickr.css';
+
  * {
     margin: 0;
     padding: 0;
@@ -28,6 +30,7 @@
     --lgray: #f0f0f0;
     --blue: #4cc9ce;
     --blue2: #36e6ec;
+    --yellow: #f1eba1;
     --black: #000000;
     --red: #ff4949;
 }
@@ -379,9 +382,14 @@ label {
     align-items: center;
 }
 
+.logo-container h5 {
+    font-size: 20px;
+    font-weight: 400;
+}
+
 #logo-img {
-    width: 42px;
-    margin-right: 8px;
+    width: 38px;
+    margin-right: 12px;
 }
 
 nav ul li {

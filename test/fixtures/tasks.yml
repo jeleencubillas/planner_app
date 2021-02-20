@@ -5,11 +5,15 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
+  id: 1
   name: MyString
+  due_date: 2020-02-19
   description: MyText
   category_id: 1
 
 two:
+  id: 2
   name: MyString
+  due_date: 2020-02-20
   description: MyText
-  category_id: 2
+  category_id: 1
