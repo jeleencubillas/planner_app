@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_20_041043) do
+ActiveRecord::Schema.define(version: 2021_02_26_174428) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.string "color"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -22,11 +23,12 @@ ActiveRecord::Schema.define(version: 2021_02_20_041043) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
+    t.date "due_date"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "due_date"
     t.integer "category_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -35,6 +37,8 @@ ActiveRecord::Schema.define(version: 2021_02_20_041043) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "first_name"
+    t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -43,4 +47,5 @@ ActiveRecord::Schema.define(version: 2021_02_20_041043) do
 
   add_foreign_key "categories", "users"
   add_foreign_key "tasks", "categories"
+  add_foreign_key "tasks", "users"
 end

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TDR: A Planner for Doers</title>
+    <title>ToDoIt</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,11 +16,10 @@
   </head>
 
   <body>
-    <%= render "shared/header" %>
-    <%= render "shared/flash" %>
+    <%= render "shared/sidebar" %>
     <div class="main">
+      <%= render "shared/flash" %>
       <%= yield %>
     </div>
-    <%= render "shared/footer" %>
   </body>
 </html>

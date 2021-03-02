@@ -4,6 +4,10 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   # setup test task
   setup do
+    get '/users/sign_in'
+    sign_in users (:one)
+    post user_session_path
+    @category = categories(:one)
     @task = tasks(:one)
   end
 

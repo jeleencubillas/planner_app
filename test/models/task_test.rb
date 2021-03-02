@@ -18,7 +18,7 @@ class TaskTest < ActiveSupport::TestCase
     assert_not task.save, "Saved Task without category"
   end
 
-  test "2. should not save Task without due date" do
+  test "3. should not save Task without due date" do
     task = Task.new
     task.name = "Sample Task"
     task.category_id = 2

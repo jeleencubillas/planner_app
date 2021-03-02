@@ -4,11 +4,13 @@ one:
   id: 1
   name: MyString
   description: MyText
+  color: '#000000'
   user_id: 1
 
 two:
   id: 2
   name: MyString
   description: MyText
+  color: '#ffffff'
   user_id: 2
 

@@ -1,0 +1,7 @@
+/*Change 'classic' to which ever theme you are using from Pickr*/
+@import '@simonwep/pickr/dist/themes/classic.min.css';
+
+/*Custom form field style*/
+form .field .pickr {
+  display: inline-block;
+}

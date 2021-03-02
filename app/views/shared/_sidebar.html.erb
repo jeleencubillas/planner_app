@@ -1,0 +1,35 @@
+<div id="sidebar">
+
+    <div id="sidebar-container">
+
+        <a href="/">
+            <div class="logo-container">
+                <%= image_tag ("logo.png"), id: "logo-img" %>
+                <h5>ToDoIt</h5>
+            </div>
+        </a>
+
+        <% if user_signed_in? %>
+
+            <div class="nav-container">
+                <nav>
+                    <ul>
+                    <li><%= link_to 'Tasks Due Today', tasks_today_path, class: "low-contrast" %></li>
+                    <li><%= link_to 'All Categories', categories_path, class: "low-contrast" %></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="sidebar-buttons-container">
+                <%= link_to '<i class="lni lni-tag"></i>&emsp;Create Category'.html_safe, new_category_path, class: "button button-outline" %>
+                <%= link_to '<i class="lni lni-user"></i>&emsp;Sign Out'.html_safe, destroy_user_session_path, :method => :delete, class: "button button-solid" %>
+            </div>
+
+            <p class="footer-text low-contrast">Crafted with <i class="lni lni-heart-filled"></i> using Ruby on Rails.</p>
+    
+        <% else %>
+        <% end %>
+
+    </div>
+
+</div>

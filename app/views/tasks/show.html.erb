@@ -5,7 +5,7 @@
 <div class="container">
     <div class="task-description">
     <p class="big"><%= @task.description %></p>
-    <p class="centered low-contrast">Posted <%= time_ago_in_words(@task.created_at) %> ago</p>
+    <p class="low-contrast">Due: <%= @task.due_date.to_formatted_s(:long) %></p>
     </div>
 </div>
 <div class="buttons-container">

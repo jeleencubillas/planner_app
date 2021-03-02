@@ -12,3 +12,5 @@ import flatpickr from "flatpickr"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import "controllers"

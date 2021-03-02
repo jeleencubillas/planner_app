@@ -1,13 +1,13 @@
 <div class="title-area">
-    <h1>Tasks</h1>
+    <h1>Your Tasks Due Today</h1>
 </div>
 
 <div class="container" >
     <% @tasks.each do |task| %>
-        <div class="task" style="box-shadow: 10px 10px 0 0 <%= @category.color %>;">
+        <div class="task" style="box-shadow: 10px 10px 0 0 <%= task.category.color %>;">
             <div class="task-text">
                 <h3><%= link_to task.name, task %></h3>
-                <p class="small">Category: <%= @category.name %>&emsp;|&emsp;Due: <%= task.due_date.to_formatted_s(:long) %></p>
+                <p class="small">Category: <%= task.category.name %>&emsp;|&emsp;Due: <%= task.due_date.to_formatted_s(:long) %></p>
             </div>
             <%= link_to '<i class="lni lni-eye"></i>&emsp;View'.html_safe, task_path(task) %>
             <%= link_to '<i class="lni lni-pencil-alt"></i>&emsp;Edit'.html_safe, edit_task_path(task) %>

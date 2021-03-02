@@ -1,17 +1,33 @@
 <div class="title-area">
-    <h1><%= @category.name %></h1>
+    <h1 style="box-shadow: inset 0 -18px 0 <%= @category.color %>" ><%= @category.name %></h1>
 </div>
 
 <div class="container">
     <div class="category-description">
     <p class="big"><%= @category.description %></p>
-    <p class="centered low-contrast">Posted <%= time_ago_in_words(@category.created_at) %> ago</p>
     </div>
 </div>
 <div class="buttons-container">
-    <%= link_to '<i class="lni lni-pencil-alt"></i>&emsp;Edit'.html_safe, edit_category_path(@category), class: "button button-solid" %>
+    <%= link_to '<i class="lni lni-checkbox"></i>&emsp;Add Task'.html_safe, new_category_task_path(@category), class: "button button-solid" %>
+    <%= link_to '<i class="lni lni-pencil-alt"></i>&emsp;Edit'.html_safe, edit_category_path(@category), class: "button button-outline" %>
     <%= link_to '<i class="lni lni-trash"></i>&emsp;Delete'.html_safe, @category,
         class: "button button-outline",
         method: :delete,
         data: { confirm: "Are you sure you want to delete this category? This action cannot be reversed." } %>
+</div>
+
+<div class="container">
+    <% @category.tasks.each do |task| %>
+        <div class="task" style="box-shadow: 10px 10px 0 0 <%= @category.color %>;">
+            <div class="task-text">
+                <h3><%= link_to task.name, task %></h3>
+                <p class="small">Category: <%= @category.name %>&emsp;|&emsp;Due: <%= task.due_date.to_formatted_s(:long) %></p>
+            </div>
+            <%= link_to '<i class="lni lni-eye"></i>&emsp;View'.html_safe, task_path(task) %>
+            <%= link_to '<i class="lni lni-pencil-alt"></i>&emsp;Edit'.html_safe, edit_task_path(task) %>
+            <%= link_to '<i class="lni lni-trash"></i>&emsp;Delete'.html_safe, task,
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete this task? This action cannot be reversed." } %>
+        </div>
+    <% end %>
 </div>

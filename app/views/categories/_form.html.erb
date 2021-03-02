@@ -1,13 +1,33 @@
 <%= form_with model: @category, local: true do |f| %>
 
+    <div class="errors-container">
+        <p>
+            <% if @category.errors.any? %>
+                <ul>    
+                    <% @category.errors.full_messages.each do |message| %>
+                        <li> <%= message %> </li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </p>
+    </div>
+
     <p>
         <label>Category</label><br>
         <%= f.text_field :name, :placeholder => "Self-Care" %>
     </p>
 
     <p>
+        <label>Color</label><br>
+        <div class="color-picker" data-controller="color-picker">
+            <%= f.text_field :color, data: { target: "color-picker.input" }, :cols => 45 %>
+            <div data-target="color-picker.picker"></div>
+        </div>
+    </p>
+
+    <p>
         <label>Description</label><br>
-        <%= f.text_area :description, :cols => 50, :rows => 8, :placeholder => "Because you cannot pour from an empty cup" %>
+        <%= f.text_area :description, :cols => 50, :rows => 5, :placeholder => "Because you cannot pour from an empty cup" %>
     </p>
 
     <p>

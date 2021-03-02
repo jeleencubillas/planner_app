@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
-  root to: "tasks#index"
+
+  root "categories#index"
 
   devise_for :users
   
-  resources :categories, :tasks
+  resources :categories, shallow: true do 
+    resources :tasks
+  end
+
+  get '/today' => 'tasks#today', as: :tasks_today
 
 end

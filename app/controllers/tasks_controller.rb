@@ -1,8 +1,15 @@
 class TasksController < ApplicationController
-    before_action :get_category, only: [:show, :edit, :update, :destroy]
+
+    before_action :authenticate_user!
+    before_action :get_category, only: [:index, :new, :create]
+    before_action :get_categories, only: :today
 
     def index
-        @tasks = Task.all
+        @tasks = @category.tasks
+    end
+
+    def today
+        @tasks = Task.tasks_today
     end
         
     def show
@@ -10,14 +17,16 @@ class TasksController < ApplicationController
     end
 
     def new
-        @tasks = Task.new
+        @task = @category.tasks.build
     end
     
     def create
-        @task = Task.new(task_params)
+        @task = @category.tasks.build(task_params)
+        @task.user_id = current_user.id
+        @task.category_id = @category.id
 
         if @task.save
-            redirect_to @task
+            redirect_to category_path(@category), notice: "New task created"
         else
             render :new
         end
@@ -31,25 +40,29 @@ class TasksController < ApplicationController
         @task = Task.find(params[:id])
 
         if @task.update(task_params)
-          redirect_to @task
+          redirect_to task_path, notice: "Task updated"
         else
           render :edit
         end
-    end
+    end  
 
     def destroy
         @task = Task.find(params[:id])
         @task.destroy
     
-        redirect_to tasks_path
+        redirect_to task_path, notice: "Task deleted"
     end
 
     private
     def get_category
-        @category = Category.find(params:[:category_id])
+        @category = current_user.categories.find(params[:category_id])
     end
-    
+
+    def get_categories
+        @categories = current_user.categories.all
+    end
+
     def task_params
-        params.require(:task).permit(:name, :description, :due_date, :category_id)
+        params.require(:task).permit(:name, :due_date, :description, :category_id, :user_id)
     end
 end

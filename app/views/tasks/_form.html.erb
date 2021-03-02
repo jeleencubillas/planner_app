@@ -1,4 +1,16 @@
-<%= form_with model: @task, local: true do |f| %>
+<%= form_with model: @task, url: category_tasks_path, local: true do |f| %>
+
+    <div class="errors-container">
+        <p>
+            <% if @task.errors.any? %>
+                <ul>    
+                    <% @task.errors.full_messages.each do |message| %>
+                        <li> <%= message %> </li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </p>
+    </div>
 
     <p>
         <label>Task</label><br>
@@ -6,13 +18,17 @@
     </p>
 
     <p>
-        <label>Category</label><br>
-        <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Assign a Category" %>
+        <label>Due Date</label><br>
+          <%= f.text_field :due_date,
+                    data: {
+                      controller: "flatpickr",
+                      flatpickr_min_date: Date.today }
+            %>
     </p>
 
     <p>
         <label>Notes (optional)</label><br>
-        <%= f.text_area :description, :cols => 50, :rows => 8, :placeholder => "An apple a day keeps the doctor away" %>
+        <%= f.text_area :description, :cols => 50, :rows => 5, :placeholder => "An apple a day keeps the doctor away" %>
     </p>
 
     <p>
