@@ -22,4 +22,5 @@ test:
 
 production:
   <<: *default
+  adapter: postgresql
   database: db/planner_production.sqlite3
